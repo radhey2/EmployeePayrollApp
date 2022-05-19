@@ -15,6 +15,9 @@ public class EmployeePayrollData {
        this.name = employeePayrollDTO.Name;
     }
 
+    public EmployeePayrollData(int empId, EmployeePayrollData empPayrollDTO) {
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }
