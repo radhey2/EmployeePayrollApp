@@ -1,6 +1,5 @@
 package com.bridgelabz.employeepayrollapp.service;
 
-import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
 import com.bridgelabz.employeepayrollapp.modal.EmployeePayrollData;
 import org.springframework.stereotype.Service;
 
@@ -9,30 +8,41 @@ import java.util.List;
 
 @Service
 public class EmployeePayrollService implements IEmployeePayrollService{
-    @Override
+    List<EmployeePayrollData> employeePayrollList = new ArrayList<>();
     public List<EmployeePayrollData> getEmployeePayrollData() {
-        List<EmployeePayrollData> empDataList = new ArrayList<>();
-        empDataList.add(new EmployeePayrollData(1,new EmployeePayrollDTO("pankaj",30000)));
-        return empDataList;
+
+        return employeePayrollList;
     }
 
     @Override
     public EmployeePayrollData getEmployeePayrollData(int empId) {
-        EmployeePayrollData empData = null;
-        empData = new EmployeePayrollData(1,new EmployeePayrollDTO("pankaj",30000));
-        return empData;
+        return null;
+    }
+
+    @Override
+    public EmployeePayrollData getEmployeePayrollDataById(int empId) {
+       return employeePayrollList.get(empId-1);
     }
 
     @Override
     public EmployeePayrollData createEmployeePyrollData(EmployeePayrollData empPayrollDTO) {
         EmployeePayrollData empData = null;
-        empData = new EmployeePayrollData(1,empPayrollDTO);
+        empData = new EmployeePayrollData(employeePayrollList.size()+1,empPayrollDTO);
+        employeePayrollList.add(empData);
         return empData;
     }
 
     @Override
-    public EmployeePayrollData updateEmployeePayrollData(EmployeePayrollData empPayrollDTO) {
-        EmployeePayrollData empData = null;
+    public EmployeePayrollData updateEmployeePayrollData(int empPayrollDTO) {
+        return null;
+    }
+
+    @Override
+    public EmployeePayrollData updateEmployeePayrollData(int empId, EmployeePayrollData empPayrollDTO) {
+        EmployeePayrollData empData = this.updateEmployeePayrollData(empId);
+        empData.setName(empPayrollDTO.getName());
+        empData.setSalary(empPayrollDTO.getSalary());
+        employeePayrollList.add(empData);
         empData = new EmployeePayrollData(1,empPayrollDTO);
         return empData;
     }
