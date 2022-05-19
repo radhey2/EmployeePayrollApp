@@ -1,11 +1,22 @@
 package com.bridgelabz.employeepayrollapp.dto;
 
+import lombok.ToString;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import java.util.List;
 
-public class EmployeePayrollDTO {
+public @ToString() class EmployeePayrollDTO {
     public String Name;
     public long salary;
+    public String Gender;
+    public String startDate;
+    public String note;
+    public String profilePic;
+    public List<String> Department;
+    
+    @Pattern(regexp = "^[A-Z]{1}{a-zA-Z\\s}{2,}$",message = "Employee Name Invalid")
 
     @NotEmpty(message = "Employee Name cannot be null")
 
